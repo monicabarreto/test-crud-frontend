@@ -83,7 +83,7 @@ export default function ProdutoCRUD() {
     }
   };
 
-  // Filtro por nome (produtos vendidos)
+  // Filtro por nome 
   const produtosFiltrados = produtos.filter((produto) =>
     produto.nome.toLowerCase().includes(busca.toLowerCase())
   );
