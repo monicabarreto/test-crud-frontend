@@ -6,7 +6,7 @@ interface Produto {
   preco: string;
   quantidade: string;
   categoria: string;
-  marca: string;
+ 
 }
 
 interface ProdutoCadastroProps {
@@ -19,8 +19,8 @@ export default function ProdutoCadastro({ categorias, onProdutoAdicionado }: Pro
     nome: "",
     preco: "",
     quantidade: "",
-    categoria: "",
-    marca: ""
+    categoria: ""
+    
   });
   
 
@@ -44,7 +44,7 @@ export default function ProdutoCadastro({ categorias, onProdutoAdicionado }: Pro
 
     try {
       await api.post("/", form);
-      setForm({ nome: "", preco: "", quantidade: "", categoria: "", marca: ""});
+      setForm({ nome: "", preco: "", quantidade: "", categoria: ""});
       setErro(null);
       onProdutoAdicionado();
     } catch (error) {
@@ -54,12 +54,13 @@ export default function ProdutoCadastro({ categorias, onProdutoAdicionado }: Pro
   };
 
   return (
-    <div className="border p-4 rounded bg-white mb-4">
-      <h2 className="text-xl font-bold mb-4 text-center">Cadastrar Produto</h2>
+  <div className="border p-6 rounded bg-white mb-4 shadow-sm max-w-3xl mx-auto">
+    <h2 className="text-2xl font-bold mb-6 text-center">Cadastrar Produto</h2>
 
-      {erro && <p className="text-red-600 mb-3">{erro}</p>}
+    {erro && <p className="text-red-600 mb-4 text-center">{erro}</p>}
 
-      <div className="mb-3">
+    <div className="flex gap-6 mb-4">
+      <div className="w-1/2">
         <label className="block mb-1 font-medium" htmlFor="nome">Descrição do Produto</label>
         <input
           id="nome"
@@ -67,42 +68,29 @@ export default function ProdutoCadastro({ categorias, onProdutoAdicionado }: Pro
           value={form.nome}
           onChange={handleChange}
           placeholder="Digite o nome do produto"
-          className="border p-2 rounded w-full"
+          className="border rounded p-3 w-full shadow-sm bg-gray-50 focus:outline-none focus:ring-1 focus:ring-gray-300"
         />
       </div>
 
-      <div className="flex gap-4">
-  <div className="mb-3 w-1/2">
-    <label className="block mb-1 font-medium" htmlFor="nome">Marca:</label>
-    <input
-      id="MARCA"
-      name="marca"
-      value={form.marca}
-      onChange={handleChange}
-      placeholder="Digite a marca do produto"
-      className="border p-2 rounded w-full"
-    />
-  </div>
+      <div className="w-1/2">
+        <label className="block mb-1 font-medium" htmlFor="categoria">Categoria</label>
+        <select
+          id="categoria"
+          name="categoria"
+          value={form.categoria}
+          onChange={handleChange}
+          className="border rounded p-3 w-full shadow-sm bg-gray-50 focus:outline-none focus:ring-1 focus:ring-gray-300"
+        >
+          <option value="">Selecione a categoria</option>
+          {categorias.map((c) => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
+      </div>
+    </div>
 
-  <div className="mb-3 w-1/2">
-    <label className="block mb-1 font-medium" htmlFor="categoria">Categoria</label>
-    <select
-      id="categoria"
-      name="categoria"
-      value={form.categoria}
-      onChange={handleChange}
-      className="border p-2 rounded w-full"
-    >
-      <option value="">Selecione a categoria</option>
-      {categorias.map((c) => (
-        <option key={c} value={c}>{c}</option>
-      ))}
-    </select>
-  </div>
-</div>
-
-
-      <div className="mb-3">
+    <div className="flex gap-6 mb-4">
+      <div className="w-1/2">
         <label className="block mb-1 font-medium" htmlFor="preco">Preço</label>
         <input
           id="preco"
@@ -113,11 +101,11 @@ export default function ProdutoCadastro({ categorias, onProdutoAdicionado }: Pro
           value={form.preco}
           onChange={handleChange}
           placeholder="Digite o preço"
-          className="border p-2 rounded w-full"
+          className="border rounded p-3 w-full shadow-sm bg-gray-50 focus:outline-none focus:ring-1 focus:ring-gray-300"
         />
       </div>
 
-      <div className="mb-4">
+      <div className="w-1/2">
         <label className="block mb-1 font-medium" htmlFor="quantidade">Quantidade</label>
         <input
           id="quantidade"
@@ -127,16 +115,19 @@ export default function ProdutoCadastro({ categorias, onProdutoAdicionado }: Pro
           value={form.quantidade}
           onChange={handleChange}
           placeholder="Digite a quantidade"
-          className="border p-2 rounded w-full"
+          className="border rounded p-3 w-full shadow-sm bg-gray-50 focus:outline-none focus:ring-1 focus:ring-gray-300"
         />
       </div>
-
-      <button
-        onClick={handleSubmit}
-        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full"
-      >
-        Cadastrar
-      </button>
     </div>
-  );
+
+    <button
+      onClick={handleSubmit}
+      className="bg-green-600 text-white font-semibold px-4 py-3 rounded hover:bg-green-700 w-full transition duration-200"
+    >
+      Cadastrar
+    </button>
+  </div>
+);
+
+
 }
