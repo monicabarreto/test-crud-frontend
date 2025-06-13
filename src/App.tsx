@@ -1,6 +1,6 @@
 import React from 'react';
 import CategoriaDropdown from './Components/CadastroProdutos';
-import BuscaProduto from './Components/BuscaProduto'; // Importe o novo componente
+import BuscaProduto from './Components/BuscaProduto'; 
 
 const App: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ const App: React.FC = () => {
       <CategoriaDropdown />
 
 
-      <BuscaProduto /> {/* Adicionando a busca abaixo do dropdown */}
+      <BuscaProduto /> {}
     </div>
   );
 };

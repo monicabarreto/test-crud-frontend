@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://localhost:7168/api', // Atualize conforme necessário
+  baseURL: 'https://localhost:7168/api',
 });
 
-// Obter todas as categorias
+
 export const getCategorias = async () => {
   try {
     const response = await api.get('/Categorias');
@@ -15,7 +15,7 @@ export const getCategorias = async () => {
   }
 };
 
-// Criar um novo produto
+
 export const createProduto = async (produto: { nome: string; preco: number; categoriaId: number; quantidade: number }) => {
   try {
     const response = await api.post('/Produto', produto);
@@ -25,7 +25,7 @@ export const createProduto = async (produto: { nome: string; preco: number; cate
   }
 };
 
-// Obter todos os produtos cadastrados
+
 export const getProdutos = async () => {
   try {
     const response = await api.get('/Produto');
@@ -36,7 +36,7 @@ export const getProdutos = async () => {
   }
 };
 
-// Atualizar um produto por ID
+// por ID
 export const updateProduto = async (id: number, produto: { nome: string; preco: number; categoriaId: number; quantidade: number }) => {
   try {
     const response = await api.put(`/Produto/${id}`, produto);
@@ -46,7 +46,7 @@ export const updateProduto = async (id: number, produto: { nome: string; preco: 
   }
 };
 
-// Excluir um produto por ID
+//por ID
 export const deleteProduto = async (id: number) => {
   try {
     await api.delete(`/Produto/${id}`);
